@@ -1,0 +1,26 @@
+{
+  "name": "fuse-wallet-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "ENV=LOCAL nodemon index.js",
+    "qa": "ENV=QA APPLICATION_NAME=WALLET_BACKEND nodemon index.js",
+    "prod": "ENV=PRODUCTION APPLICATION_NAME=WALLET_BACKEND nodemon index.js",
+    "build": "npm install",
+    "lint": "./node_modules/.bin/standard"
+  },
+  "author": "LiorRabin",
+  "license": "MIT",
+  "dependencies": {
+    "@colucom/osseus": "~2.3.1",
+    "@colucom/osseus-logger": "~0.5.1",
+    "@colucom/osseus-router": "~0.4.1",
+    "@colucom/osseus-server": "~0.2.1",
+    "axios": "^0.18.0",
+    "web3": "^1.0.0-beta.37"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
+}

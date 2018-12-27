@@ -1,0 +1,16 @@
+{
+  "/entities/:contract_address": {
+    "GET": {
+      "route": "get",
+      "jwt": true,
+      "validators": {
+        "params": {
+          "contract_address": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          }
+        }
+      }
+    }
+  }
+}
