@@ -4,12 +4,7 @@ module.exports = (osseus) => {
   return {
     get: async (req, res, next) => {
       try {
-        const resp = await axios.get(`${osseus.config.explorer_api}?module=contract&action=getabi&address=${req.params.contract_address}`)
-        if (!resp || !resp.data || !resp.data.result) {
-          return next(new Error(`Could not get contract ${req.params.contract_address} ABI`))
-        }
-        const abi = JSON.parse(resp.data.result)
-        const Contract = new osseus.web3.eth.Contract(abi, req.params.contract_address)
+        const Contract = new osseus.web3.eth.Contract(osseus.config.simple_list_abi, req.params.contract_address)
         const nEntities = await Contract.methods.count().call()
         const promises = []
         for (let i = 0; i < nEntities; i++) {

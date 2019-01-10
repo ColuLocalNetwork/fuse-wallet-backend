@@ -11,7 +11,7 @@ module.exports = {
   OSSEUS_ROUTER_CONTROLLERS_PATH: '/app/controllers',
   OSSEUS_ROUTER_POLICY_PATH: '/app/middlewares',
   OSSEUS_ROUTER_URL_PREFIX: '/api',
+  SIMPLE_LIST_ABI: require('./abi/SimpleList'),
   WEB3_PROVIDER: 'https://rpc.fuse.io',
-  EXPLORER_API: 'https://explorer.fuse.io/api',
   IPFS_PROXY_API: 'https://ipfs-proxy-prod.fuse.io/api'
 }
