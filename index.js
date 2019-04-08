@@ -11,6 +11,7 @@ const main = async () => {
 
     osseus.web3 = new Web3(new Web3.providers.HttpProvider(osseus.config.web3_provider))
 
+    await require('./modules/utils').init(osseus)
     await require('./app/errors').init(osseus)
 
     if (osseus.config.debug) console.timeEnd('FUSE WALLET BACKEND')

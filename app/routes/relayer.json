@@ -1,0 +1,42 @@
+{
+  "/relayer/transmit": {
+    "POST": {
+      "route": "transmit",
+      "jwt": true,
+      "validators": {
+        "body": {
+          "token_address": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          },
+          "from_account": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          },
+          "to_account": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          },
+          "amount_wei": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          },
+          "nonce": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          },
+          "sig": {
+            "notEmpty": true,
+            "errorMessage": "is missing"
+          }
+        }
+      }
+    }
+  },
+  "/relayer/monitor": {
+    "GET": {
+      "route": "monitor",
+      "jwt": true
+    }
+  }
+}
