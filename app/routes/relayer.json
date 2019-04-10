@@ -21,7 +21,7 @@
             "notEmpty": true,
             "errorMessage": "is missing"
           },
-          "nonce": {
+          "timestamp": {
             "notEmpty": true,
             "errorMessage": "is missing"
           },

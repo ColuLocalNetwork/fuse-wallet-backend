@@ -25,10 +25,6 @@ async function main () {
 
   const token = new web3.eth.Contract(TOKEN_ABI, TOKEN_ADDRESS)
 
-  const nonce = await token.methods.getNextNonceForAddress(FROM_ACCOUNT).call()
-  console.log('nonce', nonce)
-  console.log(`=====================================`)
-
   const fromBalanceBefore = await web3.eth.getBalance(FROM_ACCOUNT)
   const toBalanceBefore = await web3.eth.getBalance(TO_ACCOUNT)
   console.log(`fromBalanceBefore: ${fromBalanceBefore}, toBalanceBefore: ${toBalanceBefore}`)
@@ -41,8 +37,9 @@ async function main () {
 
   const amountWei = web3.utils.toBN(AMOUNT_WEI)
   const feeWei = web3.utils.toBN(FEE_WEI)
+  const timestamp = +new Date()
 
-  const msg = await token.methods.getTransferPreSignedHash(TOKEN_ADDRESS, TO_ACCOUNT, amountWei, feeWei, nonce).call()
+  const msg = await token.methods.getTransferPreSignedHash(TOKEN_ADDRESS, TO_ACCOUNT, amountWei, feeWei, timestamp).call()
   console.log('msg', msg)
   const vrs = EthUtil.ecsign(toBufferStripPrefix(msg), toBufferStripPrefix(FROM_ACCOUNT_PKEY))
   const sig = EthUtil.toRpcSig(vrs.v, vrs.r, vrs.s)
@@ -60,7 +57,7 @@ async function main () {
       from_account: FROM_ACCOUNT,
       to_account: TO_ACCOUNT,
       amount_wei: amountWei,
-      nonce: nonce,
+      timestamp: timestamp,
       sig: sig
     })
   })

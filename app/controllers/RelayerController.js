@@ -31,20 +31,13 @@ module.exports = (osseus) => {
         // init token
         const Token = new osseus.web3.eth.Contract(osseus.config.erc677_bridge_token_abi, req.body.token_address)
 
-        // validate `from_address` nonce
-        const nonce = await Token.methods.getNextNonceForAddress(req.body.from_account).call()
-        osseus.logger.debug(`nonce: ${nonce}, req.body.nonce: ${req.body.nonce}`)
-        if (parseInt(nonce) !== parseInt(req.body.nonce)) {
-          return next('Nonce mismatch')
-        }
-
         // init tx and send
         const transferPreSignedData = await Token.methods.transferPreSigned(
           req.body.sig,
           req.body.to_account,
           req.body.amount_wei,
           osseus.web3.utils.toBN(osseus.config.fee_wei || 0),
-          req.body.nonce
+          req.body.timestamp
         ).encodeABI({
           from: delegate
         })
