@@ -1,4 +1,4 @@
-const axios = require('axios')
+const fetch = require('node-fetch')
 
 module.exports = (osseus) => {
   return {
@@ -11,7 +11,8 @@ module.exports = (osseus) => {
           promises.push(new Promise(async (resolve, reject) => {
             try {
               let hash = await Contract.methods.getEntity(i).call()
-              let resp = await axios.get(`${osseus.config.ipfs_proxy_api}/metadata/${hash}`)
+              let request = await fetch(`${osseus.config.ipfs_proxy_api}/metadata/${hash}`)
+              let resp = await request.json()
               if (!resp || !resp.data) {
                 return reject(new Error(`Could not get metadata for ${hash}`))
               }
