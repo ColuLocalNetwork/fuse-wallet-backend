@@ -16,7 +16,7 @@ module.exports = (osseus) => {
               if (!resp || !resp.data) {
                 return reject(new Error(`Could not get metadata for ${hash}`))
               }
-              resolve(resp.data)
+              resolve(resp)
             } catch (err) {
               reject(err)
             }
